@@ -14,4 +14,16 @@ class Tag extends Model
         'name',
         'user_id'
     ];
+
+    public function books()
+    {
+        return $this->belongsToMany(
+            Book::class,
+            'books_tags',
+            'tag_id',
+            'book_id',
+            'id',
+            'id'
+        );
+    }
 }

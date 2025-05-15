@@ -1,56 +1,43 @@
 @extends('layouts.app')
 @section('bar-title')
-    Users
+    tags
 @endsection
 
 
 @section('title')
-    Users
+    tags
 @endsection
 
 @section('content')
     <div class="container mt-5">
 
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2 class="mb-0">Users List</h2>
-            <a href="{{ route('user_create') }}" class="btn btn-success">Add New User</a>
+            <h2 class="mb-0">tags List</h2>
+            <a href="{{ route('tag_create') }}" class="btn btn-success">Add New Tag</a>
         </div>
         @if (session()->has('message'))
             <div class="alert alert-success">
                 {{ session()->get('message') }}
             </div>
         @endif
-        <table class="table table-bordered"> <!-- تم إضافة `table-secondary` هنا -->
+        <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Email</th>
-                    <th>Image</th>
-                    <th>Role</th>
                     <th>Created At</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($users as $item)
+                @foreach ($tags as $item)
                     <tr>
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->name }}</td>
-                        <td>{{ $item->email }}</td>
-                        <td><img src="{{ asset('user_images/' . $item->image) }}" alt="User Image" width="30">
-                        </td>
-                        <td class="text-center align-middle">
-                            <span class="badge bg-{{ $item->role === 'admin' ? 'success' : 'secondary' }}">
-                                {{ $item->role }}
-                            </span>
-                        </td>
-
                         <td>{{ $item->created_at->diffForHumans() }}</td>
 
-
                         <td class="display: flex;">
-                            <form action="{{ route('user_delete', $item->id) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('tag_delete', $item->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger">
@@ -58,9 +45,9 @@
                                 </button>
                             </form>
 
-                            <a href="{{ route('user_edit', $item->id) }}" class="btn btn-sm btn-primary"><span><i
+                            <a href="{{ route('tag_edit', $item->id) }}" class="btn btn-sm btn-primary"><span><i
                                         class="fas fa-edit"></i></span></a>
-                            <a href="{{ route('user_show', $item->id) }}" class="btn btn-sm btn-info">
+                            <a href="{{ route('tag_show', $item->id) }}" class="btn btn-sm btn-info">
                                 <span><i class="fas fa-eye"></i></span>
                             </a>
                         </td>
@@ -70,7 +57,6 @@
             </tbody>
         </table>
 
-        <!-- Pagination -->
-        {{ $users->links('pagination::bootstrap-5') }}
+        {{ $tags->links('pagination::bootstrap-5') }}
     </div>
 @endsection
