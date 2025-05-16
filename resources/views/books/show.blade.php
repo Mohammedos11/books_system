@@ -24,6 +24,12 @@
                                     <span class="badge bg-secondary">Author: {{ $book->author->name ?? 'N/A' }}</span>
                                 </div>
                                 <h4 class="text-success mt-3">${{ number_format($book->price, 1) }}</h4>
+
+                                <div class="mb-2">Tags:
+                                    @foreach ($book->tags as $tag)
+                                        <span class="badge bg-info text-dark">{{ $tag->name }}</span>
+                                    @endforeach
+                                </div>
                                 <p class="text-muted"><small>Added {{ $book->created_at->diffForHumans() }}</small></p>
                                 <a href="{{ route('book_index') }}" class="btn btn-outline-primary mt-3">Back to Books</a>
                             </div>

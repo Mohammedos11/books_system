@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AuthorsController;
 use App\Http\Controllers\Admin\BooksController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\offersController;
 use App\Http\Controllers\Admin\TagsController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
@@ -21,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['prefix' => 'dashboard'], function () {
-    Route::get('dashboard', [DashboardController::class, 'index']);
+    Route::get('/', [DashboardController::class, 'index']);
 
     Route::prefix('users')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('user_index');
@@ -71,5 +72,16 @@ Route::group(['prefix' => 'dashboard'], function () {
         Route::get('/edit_book/{id}', [BooksController::class, 'edit'])->name('book_edit');
         Route::put('/update_book/{id}', [BooksController::class, 'update'])->name('book_update');
         Route::get('/show_book/{id}', [BooksController::class, 'show'])->name('book_show');
+    });
+
+
+    Route::prefix('offers')->group(function () {
+        Route::get('/', [offersController::class, 'index'])->name('offer_index');
+        Route::get('/create_offer', [offersController::class, 'create'])->name('offer_create');
+        Route::post('/store_offer', [offersController::class, 'store_offer'])->name('offer_store');
+        Route::delete('/delete_offer/{id}', [offersController::class, 'delete'])->name('offer_delete');
+        Route::get('/edit_offer/{id}', [offersController::class, 'edit'])->name('offer_edit');
+        Route::put('/update_offer/{id}', [offersController::class, 'update'])->name('offer_update');
+        Route::get('/show_offer/{id}', [offersController::class, 'show'])->name('offer_show');
     });
 });

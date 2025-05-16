@@ -19,6 +19,8 @@
 
     @include('layouts.footer-meta')
 
+    @yield('js')
+
 </body>
 
 </html>
