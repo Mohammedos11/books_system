@@ -5,6 +5,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
+
+
+
 <style>
     body {
         min-height: 100vh;
@@ -17,6 +20,21 @@
         color: white;
         padding-top: 20px;
     }
+
+    .sidebar a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px;
+        text-decoration: none;
+        color: #333;
+    }
+
+    .sidebar a i {
+        width: 20px;
+        text-align: center;
+    }
+
 
     .sidebar a {
         color: white;

@@ -38,4 +38,41 @@ class offersController extends Controller
 
         return redirect()->route('offer_index')->with('message', 'Offer Added successfully');
     }
+
+    public function edit($id)
+    {
+        $books = Book::get();
+        $offer = Offer::where('id', '=', $id)->first();
+        return view('offers.edit', compact('books', 'offer'));
+    }
+
+
+    public function update(Request $request, $id)
+    {
+
+        $validatedValue = $request->validate([
+            'offer_price' => 'required|numeric',
+            'start_date' => 'required|date|before_or_equal:end_date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+            'book_id' => 'required',
+        ]);
+
+        $offer = Offer::Where('id', '=', $id)->first();
+
+        $offer->update([
+            'offer_price' => $validatedValue['offer_price'],
+            'start_date' => $validatedValue['start_date'],
+            'end_date' => $validatedValue['end_date'],
+            'book_id' => $validatedValue['book_id']
+        ]);
+
+        return redirect()->route('offer_index')->with('message', 'Offer updated successfully.');
+    }
+
+    public function delete($id)
+    {
+        $offer = Offer::where('id', $id)->first();
+        $offer->delete();
+        return redirect()->route('offer_index')->with('message', 'Offer Deleted successfully.');
+    }
 }

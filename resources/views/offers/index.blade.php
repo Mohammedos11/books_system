@@ -28,6 +28,7 @@
                     <th>start Date</th>
                     <th>End Date</th>
                     <th>Book Name</th>
+                    <th>Created At</th>
                     <th>Actions</th>
                 </tr>
             </thead>
