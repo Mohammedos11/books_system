@@ -44,6 +44,6 @@ class Book extends Model
 
     public function offer()
     {
-        return $this->hasMany(Offer::class);
+        return $this->hasOne(Offer::class);
     }
 }

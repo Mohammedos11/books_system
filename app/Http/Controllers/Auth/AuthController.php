@@ -32,13 +32,19 @@ class AuthController extends Controller
             ]);
         }
 
-        if (auth()->user()->role == "admin") {
+        if (auth()->user()->role === "admin") {
             return redirect()->route('dashboard');
-        } else {
-            return 'You Are User Not Authorized !';
+        }
+        if (auth()->user()->role === "user") {
+            return redirect()->route('home');
         }
     }
 
+    function user_logout()
+    {
+        auth()->logout();
+        return redirect('/home')->with('success', 'You have been logged out');
+    }
 
     function logout()
     {
