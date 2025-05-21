@@ -69,7 +69,7 @@ class BooksController extends Controller
             'category_id' => $request->category_id,
             'author_id' => $request->author_id,
             'image' => $imageName,
-            'user_id' => 1
+            'user_id' => auth()->id(),
         ]);
 
         $book->tags()->sync($request->tags);

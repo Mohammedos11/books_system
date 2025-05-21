@@ -30,7 +30,7 @@ class CategoriesController extends Controller
 
         Category::create([
             'name' => $request->name,
-            'user_id' => 1,
+            'user_id' => auth()->id(),
         ]);
 
         return redirect()->route('category_index')->with('message', 'Category Added Successfully "' . $request->name . '"');

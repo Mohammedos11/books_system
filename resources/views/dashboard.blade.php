@@ -27,7 +27,7 @@
                     <i class="bi bi-cart-fill fs-1 mb-3"></i>
                     <h5 class="card-title fw-bold">Books</h5>
                     <p class="card-text">View recent books and process shipments.</p>
-                    <a href="{{ route('book_index') }}" class="btn btn-light mt-auto">Go to Orders</a>
+                    <a href="{{ route('book_index') }}" class="btn btn-light mt-auto">Go to Books</a>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
                     <i class="bi bi-gear-fill fs-1 mb-3"></i>
                     <h5 class="card-title fw-bold">Offers</h5>
                     <p class="card-text">Update site Offers and preferences.</p>
-                    <a href="{{ route('offer_index') }}" class="btn btn-dark mt-auto">Go to Settings</a>
+                    <a href="{{ route('offer_index') }}" class="btn btn-dark mt-auto">Go to Offers</a>
                 </div>
             </div>
         </div>

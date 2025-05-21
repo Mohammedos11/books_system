@@ -30,7 +30,7 @@ class AuthorsController extends Controller
 
         Author::create([
             'name' => $request->name,
-            'user_id' => 1,
+            'user_id' => auth()->id(),
         ]);
 
         return redirect()->route('author_index')->with('message', 'author Added Successfully "' . $request->name . '"');

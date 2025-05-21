@@ -7,8 +7,7 @@
                      <div class="row">
 
                          <div class="col-md-6">
-                             <p>© 2022 All rights reserved. Free HTML Template by <a
-                                     href="https://www.templatesjungle.com/" target="_blank">TemplatesJungle</a>
+                             <p>My Beatifull Books 
                              </p>
                          </div>
 

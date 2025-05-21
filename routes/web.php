@@ -103,4 +103,5 @@ Route::prefix('home')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('viewAllBooks', [HomeController::class, 'view_all_books'])->name('allBooks');
     Route::get('user_logout', [AuthController::class, 'user_logout'])->name('user_logout');
+    Route::get('show-book/{id}', [HomeController::class, 'showBook'])->name('show_book');
 });

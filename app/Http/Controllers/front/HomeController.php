@@ -36,4 +36,10 @@ class HomeController extends Controller
         $Allbooks = Book::paginate(8);
         return view('fronts.all_books', compact('Allbooks'));
     }
+
+    public function showBook($id)
+    {
+        $book = Book::where('id', $id)->first();
+        return view('fronts.show_book', compact('book'));
+    }
 }

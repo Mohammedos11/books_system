@@ -30,7 +30,7 @@ class TagsController extends Controller
 
         Tag::create([
             'name' => $request->name,
-            'user_id' => 1,
+            'user_id' => auth()->id(),
         ]);
 
         return redirect()->route('tag_index')->with('message', 'Tag Added Successfully "' . $request->name . '"');

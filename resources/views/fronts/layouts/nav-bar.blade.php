@@ -50,7 +50,7 @@
                                   <li class="menu-item"><a href="#popular-books" class="nav-link">Popular</a></li>
                                   <li class="menu-item"><a href="#special-offer" class="nav-link">Offer</a></li>
                                   <li class="nav-item dropdown">
-                                      @if (auth()->check() && auth()->user()->role === 'user')
+                                      @if (auth()->check() && in_array(auth()->user()->role, ['user', 'admin']))
                                           <a class="nav-link dropdown-toggle" href="#" id="userDropdown"
                                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                               {{ auth()->user()->name }}
@@ -61,13 +61,13 @@
                                                       style="color: red;text-align: center"><i
                                                           class="fas fa-sign-out-alt"></i>
                                                       Logout</a>
-
                                               </li>
                                           </ul>
                                       @else
                                           <a href="{{ route('login') }}" class="nav-link">Login </a>
                                       @endif
                                   </li>
+
 
 
                               </ul>

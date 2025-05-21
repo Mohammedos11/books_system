@@ -96,7 +96,9 @@
                                             </button>
                                         </figure>
                                         <figcaption>
-                                            <h3>{{ $fbook->name }}</h3>
+                                            <a href="{{ route('show_book', $fbook->id) }}">
+                                                <h3>{{ $fbook->name }}</h3>
+                                            </a>
                                             <span>{{ $fbook->author->name }}</span>
                                             <div class="item-price">$ {{ $fbook->price }} </div>
                                         </figcaption>
@@ -145,6 +147,7 @@
                                     <div class="products-content">
                                         <div class="author-name">By :{{ $bestOfBook->author->name }}</div>
                                         <h3 class="item-title">{{ $bestOfBook->name }}</h3>
+
                                         <p>{{ $bestOfBook->description }}</p>
                                         <div class="item-price">$ {{ $bestOfBook->price }}</div>
                                     </div>
@@ -196,7 +199,9 @@
                                                     data-product-tile="add-to-cart">Add to Cart</button>
                                             </figure>
                                             <figcaption>
-                                                <h3>{{ $book->name }}</h3>
+                                                <a href="{{ route('show_book', $book->id) }}">
+                                                    <h3>{{ $book->name }}</h3>
+                                                </a>
                                                 <span>{{ $book->author->name }}</span>
                                                 <div class="item-price">$ {{ $book->price }}</div>
                                             </figcaption>
@@ -219,7 +224,9 @@
                                                         data-product-tile="add-to-cart">Add to Cart</button>
                                                 </figure>
                                                 <figcaption>
-                                                    <h3>{{ $book->name }}</h3>
+                                                    <a href="{{ route('show_book', $book->id) }}">
+                                                        <h3>{{ $book->name }}</h3>
+                                                    </a>
                                                     <span>{{ $book->author->name }}</span>
                                                     <div class="item-price">${{ $book->price }}</div>
                                                 </figcaption>
@@ -264,7 +271,9 @@
                                             Cart</button>
                                     </figure>
                                     <figcaption>
-                                        <h3>{{ $booksOffer->name }}</h3>
+                                        <a href="{{ route('show_book', $booksOffer->id) }}">
+                                            <h3>{{ $booksOffer->name }}</h3>
+                                        </a>
                                         <span>{{ $booksOffer->author->name }}</span>
                                         @if ($book->offer)
                                             <div class="item-price">

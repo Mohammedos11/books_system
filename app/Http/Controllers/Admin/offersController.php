@@ -75,4 +75,10 @@ class offersController extends Controller
         $offer->delete();
         return redirect()->route('offer_index')->with('message', 'Offer Deleted successfully.');
     }
+
+    function show($id)
+    {
+        $offer = Offer::find($id);
+        return view('offers.show', compact('offer'));
+    }
 }
