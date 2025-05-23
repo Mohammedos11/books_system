@@ -15,11 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
-
-Route::prefix('users', function () {
+Route::prefix('users')->group(function () {
     Route::get('/', [UserApiController::class, 'index']);
+    Route::post('/store_users', [UserApiController::class, 'store']);
+    Route::get('/{id}', [UserApiController::class, 'show']);
+    Route::delete('delete_user/{id}', [UserApiController::class, 'delete']);
 });
