@@ -16,8 +16,41 @@
                   <div class="col-md-6">
                       <div class="right-element">
 
-                          <a href="#" class="cart for-buy"><i class="icon icon-clipboard"></i><span>Cart:(0
-                                  $)</span></a>
+                          <div class="dropdown">
+                              <a class="cart for-buy dropdown-toggle text-decoration-none" data-bs-toggle="dropdown"
+                                  href="#" role="button" aria-expanded="false">
+                                  <i class="icon icon-clipboard"></i>
+                                  <span>
+                                      Cart: ({{ session('cart_total_items', 0) }} ${{ session('cart_total_price', 0) }})
+                                  </span>
+                              </a>
+
+                              <ul class="dropdown-menu p-3" style="min-width: 300px;">
+                                  @php
+                                      $cart = session('cart', []);
+                                  @endphp
+
+                                  @if (count($cart) > 0)
+                                      @foreach ($cart as $item)
+                                          <li class="mb-2">
+                                              <strong>{{ $item['name'] }}</strong><br>
+                                              {{ $item['quantity'] }} x ${{ $item['price'] }} = ${{ $item['subtotal'] }}
+                                          </li>
+                                      @endforeach
+
+                                      <li>
+                                          <hr class="dropdown-divider">
+                                      </li>
+                                      <li><strong>Total: ${{ session('cart_total_price', 0) }}</strong></li>
+                                      <li class="mt-2">
+                                          {{-- <a href="{{ route('cart.index') }}" class="btn btn-sm btn-primary w-100">View
+                                              Full Cart</a> --}}
+                                      </li>
+                                  @else
+                                      <li>سلتك فارغة.</li>
+                                  @endif
+                              </ul>
+                          </div>
 
                           <div class="action-menu">
 
@@ -25,8 +58,9 @@
                                   <a href="#" class="search-button search-toggle" data-selector="#header-wrap">
                                       <i class="icon icon-search"></i>
                                   </a>
-                                  <form role="search" method="get" class="search-box">
-                                      <input class="search-field text search-input" placeholder="Search" type="search">
+                                  <form action="{{ route('books.search') }}" method="GET" class="search-box">
+                                      <input class="search-field text search-input" name="query"
+                                          placeholder="Search by book name" type="search">
                                   </form>
                               </div>
                           </div>

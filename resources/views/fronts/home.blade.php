@@ -91,9 +91,17 @@
                                                 <img src="{{ asset('book_images/' . $fbook->image) }}" alt="Books"
                                                     style="width: 100%; height: 100%; object-fit: cover;">
                                             </div>
-                                            <button type="button" class="add-to-cart" data-product-tile="add-to-cart">
-                                                Add to Cart
-                                            </button>
+                                            <form class="add-to-cart-form">
+                                                @csrf
+                                                <meta name="csrf-token" content="{{ csrf_token() }}">
+                                                <input type="hidden" name="id" value="{{ $fbook->id }}">
+                                                <input type="hidden" name="name" value="{{ $fbook->name }}">
+                                                <input type="hidden" name="price" value="{{ $fbook->price }}">
+                                                <input type="hidden" name="quantity" value="1">
+                                                <button type="submit" class="btn btn-sm btn-success">Add to
+                                                    Cart</button>
+                                            </form>
+
                                         </figure>
                                         <figcaption>
                                             <a href="{{ route('show_book', $fbook->id) }}">
@@ -237,7 +245,7 @@
                             </div>
                         @endforeach
 
-                    </div><!--inner-tabs-->
+                    </div>
 
                 </div>
             </div>
@@ -303,6 +311,44 @@
     </script>
     <script src="{{ asset('front_end/js/plugins.js') }}"></script>
     <script src="{{ asset('front_end/js/script.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('.add-to-cart-form').on('submit', function(e) {
+                e.preventDefault();
+
+                let form = $(this);
+                let formData = form.serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ route('cart.ajaxAdd') }}",
+                    data: formData,
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            $('.cart span').text(
+                                `Cart:(${response.total_items} $${response.total_price})`);
+                            alert('Book added to cart!');
+                        } else {
+                            alert('Something went wrong!');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('AJAX Error:', error);
+                        alert('Error adding to cart.');
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 

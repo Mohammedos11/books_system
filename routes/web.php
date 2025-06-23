@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\offersController;
 use App\Http\Controllers\Admin\TagsController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\front\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -104,4 +105,7 @@ Route::prefix('home')->group(function () {
     Route::get('viewAllBooks', [HomeController::class, 'view_all_books'])->name('allBooks');
     Route::get('user_logout', [AuthController::class, 'user_logout'])->name('user_logout');
     Route::get('show-book/{id}', [HomeController::class, 'showBook'])->name('show_book');
+    Route::get('/search', [HomeController::class, 'search'])->name('books.search');
 });
+
+Route::post('/cart/add', [CartController::class, 'ajaxAdd'])->name('cart.ajaxAdd');

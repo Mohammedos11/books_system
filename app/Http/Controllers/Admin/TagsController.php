@@ -37,7 +37,7 @@ class TagsController extends Controller
     }
 
     function edit($id)
-    {
+    { 
         $tag = Tag::find($id);
         return view('tags.edit', compact('tag'));
     }

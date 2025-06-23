@@ -42,4 +42,13 @@ class HomeController extends Controller
         $book = Book::where('id', $id)->first();
         return view('fronts.show_book', compact('book'));
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $books = Book::where('name', 'LIKE', '%' . $query . '%')->get();
+
+        return view('fronts.search', compact('books', 'query'));
+    }
 }
