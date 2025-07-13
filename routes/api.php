@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\UserApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login',    [AuthController::class, 'login']);
+
+
+Route::prefix('users')->group(function () {
+    Route::get('/', [UserApiController::class, 'index']);
+    Route::post('/store_users', [UserApiController::class, 'store']);
+    Route::get('/{id}', [UserApiController::class, 'show']);
+    Route::delete('delete_user/{id}', [UserApiController::class, 'delete']);
+});
